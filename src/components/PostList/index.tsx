@@ -1,8 +1,8 @@
 import * as React from "react";
 import { usePostListQuery } from "../../generated/graphql";
-import { PostList, OwnProps } from "./PostList";
+import { PostList } from "./PostList";
 
-const PostListContainer: React.FC<OwnProps> = ({ handleIdChange }) => {
+const PostListContainer: React.FC = () => {
   const { data, error, loading } = usePostListQuery();
 
   if (loading) {
@@ -13,7 +13,7 @@ const PostListContainer: React.FC<OwnProps> = ({ handleIdChange }) => {
     return <div>ERROR</div>;
   }
 
-  return <PostList data={data} handleIdChange={handleIdChange} />;
+  return <PostList data={data} />;
 };
 
 export default PostListContainer;

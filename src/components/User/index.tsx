@@ -1,18 +1,19 @@
 import * as React from "react";
 import { useUserProfileQuery } from "../../generated/graphql";
-import User from "./User";
+import { User } from "./User";
 
-interface OwnProps {
-  id: string;
+interface Props {
+  match: {
+    params: { id: string };
+  };
 }
 
-const LaunchProfileContainer: React.FC<OwnProps> = ({ id }) => {
-  console.log(id, "=id");
+const UserContainer: React.FC<Props> = ({ match }) => {
+  const { id } = match.params;
   const { data, error, loading, refetch } = useUserProfileQuery({
     variables: { uuid: String(id) }
   });
   React.useEffect(() => {
-    console.log("Changed id");
     refetch();
   }, [id]);
 
@@ -31,4 +32,4 @@ const LaunchProfileContainer: React.FC<OwnProps> = ({ id }) => {
   return <User data={data} />;
 };
 
-export default LaunchProfileContainer;
+export default UserContainer;

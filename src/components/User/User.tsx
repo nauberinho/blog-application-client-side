@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { UserProfileQuery } from "../../generated/graphql";
 import styled from "styled-components";
 
@@ -22,17 +23,17 @@ const UserInfoTitle = styled.div`
   color: gray;
 `;
 
-const PostTitle = styled.div`
+const PostTitle = styled(Link)`
   padding-top: 1rem;
+  cursor: pointer;
 `;
 
 interface Props {
   data: UserProfileQuery;
 }
 
-const User: React.FC<Props> = ({ data }) => {
+export const User: React.FC<Props> = ({ data }) => {
   const { user } = data;
-  console.log(user);
   if (!user) {
     return <div>No User is available</div>;
   }
@@ -44,11 +45,11 @@ const User: React.FC<Props> = ({ data }) => {
       <UserInfo>
         <UserInfoTitle>Posts</UserInfoTitle>
         {user.posts!.edges.map((post: any) => (
-          <PostTitle>{post.node.title}</PostTitle>
+          <PostTitle to={`/posts/${post.node.uuid}`}>
+            {post.node.title}
+          </PostTitle>
         ))}
       </UserInfo>
     </UserContainer>
   );
 };
-
-export default User;

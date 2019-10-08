@@ -8,7 +8,7 @@ export const QUERY_USER_PROFILE = gql`
       posts {
         edges {
           node {
-            id
+            uuid
             body
             title
             author {

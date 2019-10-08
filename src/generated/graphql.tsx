@@ -193,7 +193,7 @@ export type PostListQuery = (
       { __typename?: 'PostObjectEdge' }
       & { node: Maybe<(
         { __typename?: 'PostObject' }
-        & Pick<PostObject, 'body' | 'id' | 'title'>
+        & Pick<PostObject, 'body' | 'uuid' | 'title'>
         & { author: Maybe<(
           { __typename?: 'UserObject' }
           & Pick<UserObject, 'id' | 'username'>
@@ -219,7 +219,7 @@ export type UserProfileQuery = (
         { __typename?: 'PostObjectEdge' }
         & { node: Maybe<(
           { __typename?: 'PostObject' }
-          & Pick<PostObject, 'id' | 'body' | 'title'>
+          & Pick<PostObject, 'uuid' | 'body' | 'title'>
           & { author: Maybe<(
             { __typename?: 'UserObject' }
             & Pick<UserObject, 'id' | 'username'>
@@ -308,7 +308,7 @@ export const PostListDocument = gql`
     edges {
       node {
         body
-        id
+        uuid
         title
         author {
           id
@@ -354,7 +354,7 @@ export const UserProfileDocument = gql`
     posts {
       edges {
         node {
-          id
+          uuid
           body
           title
           author {

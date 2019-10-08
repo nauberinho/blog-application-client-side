@@ -3,9 +3,24 @@ import { PostQuery } from "../../generated/graphql";
 import styled from "styled-components";
 import _ from "lodash";
 
-const PostDetails = styled.div`
+const Container = styled.div`
+  padding: 2rem;
+`;
+
+const Title = styled.div`
   padding: 1rem 0 0 0;
   border-radius: 5px;
+  font-weight: 700;
+`;
+
+const Info = styled.div`
+  padding-top: 2rem;
+  border: 1px solid lightgray;
+`;
+
+const Body = styled.div`
+  padding: 2rem;
+  border: 2px solid darkgreen;
 `;
 
 interface Props {
@@ -13,17 +28,17 @@ interface Props {
 }
 
 const Post: React.FC<Props> = ({ data }) => {
-  console.log(data, "=data");
   const { post } = data;
   if (!post) {
-    return <div>No User is available</div>;
+    return <div>No post is available</div>;
   }
 
   return (
-    <div>
-      Flight {post.id}:
-      <PostDetails>{_.get(post, "author.username")}</PostDetails>
-    </div>
+    <Container>
+      <Title>{post.title}</Title>
+      <Info></Info>
+      <Body>{post.body}</Body>
+    </Container>
   );
 };
 

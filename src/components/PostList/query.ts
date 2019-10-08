@@ -6,7 +6,7 @@ export const QUERY_POST_LIST = gql`
       edges {
         node {
           body
-          id
+          uuid
           title
           author {
             id

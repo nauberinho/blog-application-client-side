@@ -1,10 +1,9 @@
 import * as React from "react";
 import { useUserListQuery } from "../../generated/graphql";
-import { UserList, OwnProps } from "./UserList";
+import { UserList } from "./UserList";
 
-const UserListContainer: React.FC<OwnProps> = ({ handleIdChange }) => {
+const UserListContainer: React.FC = () => {
   const { data, error, loading } = useUserListQuery();
-  console.log(data, error, "=error", loading);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -14,7 +13,7 @@ const UserListContainer: React.FC<OwnProps> = ({ handleIdChange }) => {
     return <div>ERROR</div>;
   }
 
-  return <UserList data={data} handleIdChange={handleIdChange} />;
+  return <UserList data={data} />;
 };
 
 export default UserListContainer;
