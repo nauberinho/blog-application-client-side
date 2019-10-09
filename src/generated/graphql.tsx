@@ -203,6 +203,36 @@ export type PostListQuery = (
   )> }
 );
 
+export type CreateUserMutationVariables = {
+  username: Scalars['String']
+};
+
+
+export type CreateUserMutation = (
+  { __typename?: 'Mutation' }
+  & { createUser: Maybe<(
+    { __typename?: 'CreateUser' }
+    & { user: Maybe<(
+      { __typename?: 'UserObject' }
+      & Pick<UserObject, 'id' | 'username'>
+      & { posts: Maybe<(
+        { __typename?: 'PostObjectConnection' }
+        & { edges: Array<Maybe<(
+          { __typename?: 'PostObjectEdge' }
+          & { node: Maybe<(
+            { __typename?: 'PostObject' }
+            & Pick<PostObject, 'id' | 'authorId' | 'body' | 'title'>
+            & { author: Maybe<(
+              { __typename?: 'UserObject' }
+              & Pick<UserObject, 'username' | 'uuid'>
+            )> }
+          )> }
+        )>> }
+      )> }
+    )> }
+  )> }
+);
+
 export type UserProfileQueryVariables = {
   uuid: Scalars['String']
 };
@@ -346,6 +376,55 @@ export function withPostList<TProps, TChildProps = {}>(operationOptions?: Apollo
       
 export type PostListQueryHookResult = ReturnType<typeof usePostListQuery>;
 export type PostListQueryResult = ApolloReactCommon.QueryResult<PostListQuery, PostListQueryVariables>;
+export const CreateUserDocument = gql`
+    mutation createUser($username: String!) {
+  createUser(username: $username) {
+    user {
+      id
+      username
+      posts {
+        edges {
+          node {
+            id
+            author {
+              username
+              uuid
+            }
+            authorId
+            body
+            title
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+export type CreateUserMutationFn = ApolloReactCommon.MutationFunction<CreateUserMutation, CreateUserMutationVariables>;
+export type CreateUserComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateUserMutation, CreateUserMutationVariables>, 'mutation'>;
+
+    export const CreateUserComponent = (props: CreateUserComponentProps) => (
+      <ApolloReactComponents.Mutation<CreateUserMutation, CreateUserMutationVariables> mutation={CreateUserDocument} {...props} />
+    );
+    
+export type CreateUserProps<TChildProps = {}> = ApolloReactHoc.MutateProps<CreateUserMutation, CreateUserMutationVariables> & TChildProps;
+export function withCreateUser<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  CreateUserMutation,
+  CreateUserMutationVariables,
+  CreateUserProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, CreateUserMutation, CreateUserMutationVariables, CreateUserProps<TChildProps>>(CreateUserDocument, {
+      alias: 'createUser',
+      ...operationOptions
+    });
+};
+
+    export function useCreateUserMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateUserMutation, CreateUserMutationVariables>) {
+      return ApolloReactHooks.useMutation<CreateUserMutation, CreateUserMutationVariables>(CreateUserDocument, baseOptions);
+    }
+export type CreateUserMutationHookResult = ReturnType<typeof useCreateUserMutation>;
+export type CreateUserMutationResult = ApolloReactCommon.MutationResult<CreateUserMutation>;
+export type CreateUserMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateUserMutation, CreateUserMutationVariables>;
 export const UserProfileDocument = gql`
     query UserProfile($uuid: String!) {
   user(uuid: $uuid) {

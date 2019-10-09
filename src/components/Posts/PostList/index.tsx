@@ -1,5 +1,5 @@
 import * as React from "react";
-import { usePostListQuery } from "../../generated/graphql";
+import { usePostListQuery } from "../../../generated/graphql";
 import { PostList } from "./PostList";
 
 const PostListContainer: React.FC = () => {

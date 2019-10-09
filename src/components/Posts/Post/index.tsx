@@ -1,16 +1,14 @@
 import * as React from "react";
-import { useUserProfileQuery } from "../../generated/graphql";
-import { User } from "./User";
+import { usePostQuery } from "../../../generated/graphql";
+import Post from "./Post";
 
-interface Props {
-  match: {
-    params: { id: string };
-  };
+interface OwnProps {
+  match: { params: { id: string } };
 }
 
-const UserContainer: React.FC<Props> = ({ match }) => {
+const PostContainer: React.FC<OwnProps> = ({ match }) => {
   const { id } = match.params;
-  const { data, error, loading, refetch } = useUserProfileQuery({
+  const { data, error, loading, refetch } = usePostQuery({
     variables: { uuid: String(id) }
   });
   React.useEffect(() => {
@@ -29,7 +27,7 @@ const UserContainer: React.FC<Props> = ({ match }) => {
     return <div>Select a flight from the panel</div>;
   }
 
-  return <User data={data} />;
+  return <Post data={data} />;
 };
 
-export default UserContainer;
+export default PostContainer;

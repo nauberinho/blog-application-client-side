@@ -1,26 +1,53 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { theme } from "react-elems";
+import styled from "styled-components";
 
 import "./App.css";
 
-import UserList from "./components/UserList";
-import PostList from "./components/PostList";
-import User from "./components/User";
-import Post from "./components/Post";
+import Menu from "./components/Menu";
+
+import Users from "./components/Users";
+import Posts from "./components/Posts";
+
+const Container = styled.div`
+  @media ${theme.mediaQueries.mobileM("min")} {
+    padding: 0rem 0rem;
+  }
+  @media ${theme.mediaQueries.tablet("min")} {
+    padding: 1rem 10rem;
+  }
+  @media ${theme.mediaQueries.laptop("min")} {
+    padding: 1rem 20rem;
+  }
+  @media ${theme.mediaQueries.laptopL("min")} {
+    padding: 1rem 30rem;
+  }
+  @media ${theme.mediaQueries.desktopL("min")} {
+    padding: 2rem 45rem;
+  }
+  border: 2px solid green;
+  height: 100vh;
+`;
+
+const Content = styled.div`
+  padding-top: 2rem;
+  border: 3px solid blue;
+  height: auto;
+  background: ${"lightgray"};
+`;
 
 const App = () => {
-  const [userId, setUserId] = useState("");
-  const [postId, setPostId] = useState("");
-
   return (
-    <>
+    <Container>
       <Router>
-        <Route path="/users" component={UserList} />
-        <Route path="/posts" component={PostList} />
-        <Route path="/users/:id" component={User} />
-        <Route path="/posts/:id" component={Post} />
+        <Menu />
+        <Content>
+          <Route path="/users" component={Users} />
+          <Route path="/posts" component={Posts} />
+        </Content>
       </Router>
-    </>
+    </Container>
   );
 };
 

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useUserListQuery } from "../../generated/graphql";
+import { useUserListQuery } from "../../../generated/graphql";
 import { UserList } from "./UserList";
 
 const UserListContainer: React.FC = () => {
@@ -13,7 +13,11 @@ const UserListContainer: React.FC = () => {
     return <div>ERROR</div>;
   }
 
-  return <UserList data={data} />;
+  return (
+    <>
+      <UserList data={data} />
+    </>
+  );
 };
 
 export default UserListContainer;

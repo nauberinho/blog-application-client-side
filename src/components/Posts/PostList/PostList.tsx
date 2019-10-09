@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { PostListQuery } from "../../generated/graphql";
+import { PostListQuery } from "../../../generated/graphql";
 import _ from "lodash";
 
 interface Props {
@@ -16,7 +16,7 @@ export const PostList: React.FC<Props> = ({ data }) => (
   <Container>
     {data.allPosts &&
       data.allPosts.edges.map((post, i) => (
-        <Link key={i} to={`/${post!.node!.uuid}`}>
+        <Link key={i} to={`/posts/${post!.node!.uuid}`}>
           {_.get(post, "node.title", "")}
         </Link>
       ))}

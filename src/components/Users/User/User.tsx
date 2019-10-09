@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { UserProfileQuery } from "../../generated/graphql";
+import { UserProfileQuery } from "../../../generated/graphql";
 import styled from "styled-components";
 
 const Username = styled.div`
