@@ -8,7 +8,7 @@ const Users: React.FC = () => {
   return (
     <>
       <Route exact path="/users" component={UserList} />
-      <Route exact path="/users/:id" component={User} />
+      <Route exact path="/users/user/:id" component={User} />
       <Route exact path="/users/create" component={CreateUser} />
     </>
   );

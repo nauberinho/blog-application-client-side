@@ -26,15 +26,60 @@ const Container = styled.div`
   @media ${theme.mediaQueries.desktopL("min")} {
     padding: 2rem 45rem;
   }
-  border: 2px solid green;
-  height: 100vh;
 `;
 
 const Content = styled.div`
-  padding-top: 2rem;
-  border: 3px solid blue;
+  background: -moz-linear-gradient(
+    top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(246, 246, 246, 1) 47%,
+    rgba(237, 237, 237, 1) 72%,
+    rgba(237, 237, 237, 1) 100%
+  );
+  background: -webkit-gradient(
+    left top,
+    left bottom,
+    color-stop(0%, rgba(255, 255, 255, 1)),
+    color-stop(30%, rgba(255, 255, 255, 1)),
+    color-stop(47%, rgba(246, 246, 246, 1)),
+    color-stop(72%, rgba(237, 237, 237, 1)),
+    color-stop(100%, rgba(237, 237, 237, 1))
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 30%,
+    rgba(246, 246, 246, 1) 47%,
+    rgba(237, 237, 237, 1) 72%,
+    rgba(237, 237, 237, 1) 100%
+  );
+  background: -o-linear-gradient(
+    top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 30%,
+    rgba(246, 246, 246, 1) 47%,
+    rgba(237, 237, 237, 1) 72%,
+    rgba(237, 237, 237, 1) 100%
+  );
+  background: -ms-linear-gradient(
+    top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 30%,
+    rgba(246, 246, 246, 1) 47%,
+    rgba(237, 237, 237, 1) 72%,
+    rgba(237, 237, 237, 1) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 30%,
+    rgba(246, 246, 246, 1) 47%,
+    rgba(237, 237, 237, 1) 72%,
+    rgba(237, 237, 237, 1) 100%
+  );
+  padding: 2rem 1rem 0 1rem;
   height: auto;
-  background: ${"lightgray"};
+  min-height: 80vh;
 `;
 
 const App = () => {

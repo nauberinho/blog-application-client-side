@@ -8,17 +8,27 @@ interface Props {
   data: PostListQuery;
 }
 
-const Container = styled.div`
-  border: 1px solid green;
+const PostItem = styled(Link)`
+  padding: 2rem 5rem 2rem 0rem;
+  border-bottom: 1px solid lightgray;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+`;
+
+const Title = styled.div`
+  font-size: 1rem;
+  font-weight: 700;
+  color: black;
 `;
 
 export const PostList: React.FC<Props> = ({ data }) => (
-  <Container>
+  <>
     {data.allPosts &&
       data.allPosts.edges.map((post, i) => (
-        <Link key={i} to={`/posts/${post!.node!.uuid}`}>
-          {_.get(post, "node.title", "")}
-        </Link>
+        <PostItem key={i} to={`/posts/${post!.node!.uuid}`}>
+          <Title>{_.get(post, "node.title", "")}</Title>
+        </PostItem>
       ))}
-  </Container>
+  </>
 );

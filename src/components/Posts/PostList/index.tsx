@@ -10,7 +10,7 @@ const PostListContainer: React.FC = () => {
   }
 
   if (error || !data) {
-    return <div>ERROR</div>;
+    return <div>ERRORs</div>;
   }
 
   return <PostList data={data} />;
