@@ -29,7 +29,7 @@ const LinkWrapper = styled.div`
 const NavButton = styled(Link)`
   padding: 1rem 1.5rem;
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1rem;
   text-decoration: none;
   color: black;
   transition: 0.2s ease;

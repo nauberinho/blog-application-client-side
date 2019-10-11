@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-// import { Mutation } from "react-apollo";
-// import { useMutation } from "@apollo/react-hooks";
-import { CreateUserComponent } from "../../../generated/graphql";
-import { whileStatement } from "@babel/types";
+import { CreatePostComponent } from "../../../generated/graphql";
 
 interface CustomAttributes {
   isValid: boolean;
@@ -33,24 +30,25 @@ const SubmitButton = styled.button`
 const TextField = styled.input`
   border: none;
   outline: none;
-  border-bottom: 1px solid black;
+  border-bottom: 0.5px solid gray;
   padding: 1rem 2rem;
   display: block;
   font-size: 1.2rem;
 `;
 
-const CreateUserContainer: React.FC = () => {
+const CreatePostContainer: React.FC = () => {
   //   const [createUser, { error, loading, data }] = useMutation(
   //     CreateUserMutation
   //   );
 
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
   const [username, setUsername] = useState("");
-  console.log(username);
 
-  const isValid = username.length > 2;
+  const isValid = title.length > 0 && body.length > 0;
 
   return (
-    <CreateUserComponent>
+    <CreatePostComponent>
       {(mutate, { loading, data, error }) => {
         console.log(loading, data, error);
         return (
@@ -58,19 +56,32 @@ const CreateUserContainer: React.FC = () => {
             <Form>
               <TextField
                 autoFocus
+                placeholder="Title"
+                value={title}
+                onChange={({ target }) => setTitle(target.value)}
+              />
+              <TextField
+                autoFocus
+                placeholder="Once upon a time..."
+                value={body}
+                onChange={({ target }) => setBody(target.value)}
+              />
+              <TextField
+                autoFocus
+                placeholder="Username of the author"
                 value={username}
                 onChange={({ target }) => setUsername(target.value)}
                 onKeyDown={({ keyCode }) =>
                   keyCode === 13 &&
                   isValid &&
-                  mutate({ variables: { username: username } })
+                  mutate({ variables: { title, body, username } })
                 }
               />
               <SubmitButton
                 disabled={!isValid}
                 isValid={isValid}
                 onClick={() => {
-                  mutate({ variables: { username: username } });
+                  mutate({ variables: { title, body, username } });
                 }}
               >
                 Create User
@@ -79,8 +90,8 @@ const CreateUserContainer: React.FC = () => {
           </Container>
         );
       }}
-    </CreateUserComponent>
+    </CreatePostComponent>
   );
 };
 
-export default CreateUserContainer;
+export default CreatePostContainer;

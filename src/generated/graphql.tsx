@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import * as React from 'react';
 import * as ApolloReactCommon from '@apollo/react-common';
+import * as React from 'react';
 import * as ApolloReactComponents from '@apollo/react-components';
 import * as ApolloReactHoc from '@apollo/react-hoc';
 import * as ApolloReactHooks from '@apollo/react-hooks';
@@ -165,6 +165,28 @@ export type UserObjectEdge = {
   cursor: Scalars['String'],
 };
 
+export type CreatePostMutationVariables = {
+  body: Scalars['String'],
+  title: Scalars['String'],
+  username: Scalars['String']
+};
+
+
+export type CreatePostMutation = (
+  { __typename?: 'Mutation' }
+  & { createPost: Maybe<(
+    { __typename?: 'CreatePost' }
+    & { post: Maybe<(
+      { __typename?: 'PostObject' }
+      & Pick<PostObject, 'title' | 'body'>
+      & { author: Maybe<(
+        { __typename?: 'UserObject' }
+        & Pick<UserObject, 'username' | 'uuid'>
+      )> }
+    )> }
+  )> }
+);
+
 export type PostQueryVariables = {
   uuid: Scalars['String']
 };
@@ -292,6 +314,45 @@ export type UserListQuery = (
 );
 
 
+export const CreatePostDocument = gql`
+    mutation createPost($body: String!, $title: String!, $username: String!) {
+  createPost(username: $username, title: $title, body: $body) {
+    post {
+      title
+      body
+      author {
+        username
+        uuid
+      }
+    }
+  }
+}
+    `;
+export type CreatePostMutationFn = ApolloReactCommon.MutationFunction<CreatePostMutation, CreatePostMutationVariables>;
+export type CreatePostComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreatePostMutation, CreatePostMutationVariables>, 'mutation'>;
+
+    export const CreatePostComponent = (props: CreatePostComponentProps) => (
+      <ApolloReactComponents.Mutation<CreatePostMutation, CreatePostMutationVariables> mutation={CreatePostDocument} {...props} />
+    );
+    
+export type CreatePostProps<TChildProps = {}> = ApolloReactHoc.MutateProps<CreatePostMutation, CreatePostMutationVariables> & TChildProps;
+export function withCreatePost<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  CreatePostMutation,
+  CreatePostMutationVariables,
+  CreatePostProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, CreatePostMutation, CreatePostMutationVariables, CreatePostProps<TChildProps>>(CreatePostDocument, {
+      alias: 'createPost',
+      ...operationOptions
+    });
+};
+
+    export function useCreatePostMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreatePostMutation, CreatePostMutationVariables>) {
+      return ApolloReactHooks.useMutation<CreatePostMutation, CreatePostMutationVariables>(CreatePostDocument, baseOptions);
+    }
+export type CreatePostMutationHookResult = ReturnType<typeof useCreatePostMutation>;
+export type CreatePostMutationResult = ApolloReactCommon.MutationResult<CreatePostMutation>;
+export type CreatePostMutationOptions = ApolloReactCommon.BaseMutationOptions<CreatePostMutation, CreatePostMutationVariables>;
 export const PostDocument = gql`
     query Post($uuid: String!) {
   post(uuid: $uuid) {

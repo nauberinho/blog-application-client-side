@@ -26,7 +26,7 @@ export const PostList: React.FC<Props> = ({ data }) => (
   <>
     {data.allPosts &&
       data.allPosts.edges.map((post, i) => (
-        <PostItem key={i} to={`/posts/${post!.node!.uuid}`}>
+        <PostItem key={i} to={`/posts/post/${post!.node!.uuid}`}>
           <Title>{_.get(post, "node.title", "")}</Title>
         </PostItem>
       ))}

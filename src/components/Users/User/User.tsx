@@ -15,7 +15,6 @@ const UserContainer = styled.div`
 
 const UserInfo = styled.div`
   padding-top: 2rem;
-  border: 1px solid lightgray;
 `;
 
 const UserInfoTitle = styled.div`
@@ -26,6 +25,9 @@ const UserInfoTitle = styled.div`
 const PostTitle = styled(Link)`
   padding-top: 1rem;
   cursor: pointer;
+  display: block;
+  color: black;
+  text-decoration: none;
 `;
 
 interface Props {
@@ -45,7 +47,7 @@ export const User: React.FC<Props> = ({ data }) => {
       <UserInfo>
         <UserInfoTitle>Posts</UserInfoTitle>
         {user.posts!.edges.map((post: any) => (
-          <PostTitle to={`/posts/${post.node.uuid}`}>
+          <PostTitle to={`/posts/post/${post.node.uuid}`}>
             {post.node.title}
           </PostTitle>
         ))}

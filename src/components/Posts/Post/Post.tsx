@@ -14,13 +14,13 @@ const Title = styled.div`
 `;
 
 const Info = styled.div`
-  padding-top: 2rem;
-  border: 1px solid lightgray;
+  color: gray;
+  font-size: 0.8rem;
 `;
 
 const Body = styled.div`
-  padding: 2rem;
-  border: 2px solid darkgreen;
+  padding: 2rem 0;
+  border: 0.5px solid lightgray;
 `;
 
 interface Props {
@@ -37,7 +37,7 @@ const Post: React.FC<Props> = ({ data }) => {
   return (
     <Container>
       <Title>{post.title}</Title>
-      <Info></Info>
+      <Info>Created at 11th of October 2019</Info>
       <Body>{post.body}</Body>
     </Container>
   );
