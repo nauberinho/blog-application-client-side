@@ -10,11 +10,19 @@ const Username = styled.div`
 `;
 
 const UserContainer = styled.div`
-  padding: 2rem;
+  padding: 2rem 0;
 `;
 
-const UserInfo = styled.div`
-  padding-top: 2rem;
+const UserInfo = styled.div``;
+
+const BodyLine = styled.div`
+  postion: absolute;
+  top: 0;
+  left: 0;
+  border: 1.5px solid #37c870;
+  width: 30%;
+  margin: 1rem 0;
+  border-radius: 5px;
 `;
 
 const UserInfoTitle = styled.div`
@@ -45,6 +53,7 @@ export const User: React.FC<Props> = ({ data }) => {
       <Username>{user.username}</Username>
 
       <UserInfo>
+        <BodyLine></BodyLine>
         <UserInfoTitle>Posts</UserInfoTitle>
         {user.posts!.edges.map((post: any) => (
           <PostTitle to={`/posts/post/${post.node.uuid}`}>

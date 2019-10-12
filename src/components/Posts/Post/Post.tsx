@@ -16,11 +16,24 @@ const Title = styled.div`
 const Info = styled.div`
   color: gray;
   font-size: 0.8rem;
+  padding: 1rem 0 0 0;
+  display: flex;
 `;
 
-const Body = styled.div`
-  padding: 2rem 0;
-  border: 0.5px solid lightgray;
+const InfoItem = styled.div`
+  margin-right: 1rem;
+`;
+
+const Body = styled.div``;
+
+const BodyLine = styled.div`
+  postion: absolute;
+  top: 0;
+  left: 0;
+  border: 1.5px solid #37c870;
+  width: 30%;
+  margin: 1rem 0;
+  border-radius: 5px;
 `;
 
 interface Props {
@@ -37,8 +50,14 @@ const Post: React.FC<Props> = ({ data }) => {
   return (
     <Container>
       <Title>{post.title}</Title>
-      <Info>Created at 11th of October 2019</Info>
-      <Body>{post.body}</Body>
+      <Info>
+        <InfoItem>Created at 11th of October 2019</InfoItem>
+        <InfoItem>5 min read</InfoItem>
+      </Info>
+      <Body>
+        <BodyLine />
+        {post.body}
+      </Body>
     </Container>
   );
 };

@@ -21,7 +21,7 @@ const SubmitButton = styled.button`
   padding: 1rem 2rem;
   ${(p: CustomAttributes) =>
     p.isValid
-      ? "background: green; color: white;"
+      ? "background:  #37C870 ; color: white;"
       : "background: white; color: gray;"}
   transition: 0.2s ease;
   display: block;

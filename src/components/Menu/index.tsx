@@ -17,6 +17,11 @@ const Logo = styled.div`
   font-size: 1.5rem;
   font-weight: 500;
   flex: 1;
+  color: gray;
+`;
+
+const GreenSpan = styled.span`
+  color: #37c870;
 `;
 
 const LinkWrapper = styled.div`
@@ -33,7 +38,7 @@ const NavButton = styled(Link)`
   text-decoration: none;
   color: black;
   transition: 0.2s ease;
-  ${(p: CustomAttributes) => p.isActive && "color: green;"}
+  ${(p: CustomAttributes) => p.isActive && "color:  #37C870 ;"}
 `;
 
 const Menu: React.FC = () => {
@@ -46,7 +51,9 @@ const Menu: React.FC = () => {
   ];
   return (
     <Container>
-      <Logo>Blogify</Logo>
+      <Logo>
+        <GreenSpan>B</GreenSpan>logify<GreenSpan>.</GreenSpan>
+      </Logo>
       <LinkWrapper>
         <NavButton isActive={pathname === usersPath} to={usersPath}>
           Users

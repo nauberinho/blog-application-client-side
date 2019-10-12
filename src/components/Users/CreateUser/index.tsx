@@ -24,16 +24,17 @@ const SubmitButton = styled.button`
   padding: 1rem 2rem;
   ${(p: CustomAttributes) =>
     p.isValid
-      ? "background: green; color: white;"
+      ? "background:  #37C870 ; color: white;"
       : "background: white; color: gray;"}
   transition: 0.2s ease;
   display: block;
+  margin-top: 1rem;
 `;
 
 const TextField = styled.input`
   border: none;
   outline: none;
-  border-bottom: 1px solid black;
+  border-bottom: 0.5px solid lightgray;
   padding: 1rem 2rem;
   display: block;
   font-size: 1.2rem;
