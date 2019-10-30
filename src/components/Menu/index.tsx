@@ -1,7 +1,10 @@
 import * as React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
+
+import { selectLastViewed } from "../../selectors";
 
 interface CustomAttributes {
   isActive: boolean;
@@ -42,30 +45,25 @@ const NavButton = styled(Link)`
 `;
 
 const Menu: React.FC = () => {
-  const { pathname } = window.location;
-  const [usersPath, postsPath, createUserPath, createPostPath] = [
-    "/users",
-    "/posts",
-    "/users/create",
-    "/posts/create"
-  ];
+  const { lastViewed } = useSelector(selectLastViewed);
+  console.log(lastViewed);
   return (
     <Container>
       <Logo>
         <GreenSpan>B</GreenSpan>logify<GreenSpan>.</GreenSpan>
       </Logo>
       <LinkWrapper>
-        <NavButton isActive={pathname === usersPath} to={usersPath}>
+        <NavButton
+          isActive={window.location.href.includes("users")}
+          to={"/users"}
+        >
           Users
         </NavButton>
-        <NavButton isActive={pathname === postsPath} to={postsPath}>
+        <NavButton
+          isActive={window.location.href.includes("posts")}
+          to={"/posts"}
+        >
           Posts
-        </NavButton>
-        <NavButton isActive={pathname === createUserPath} to={createUserPath}>
-          Create user
-        </NavButton>
-        <NavButton isActive={pathname === createPostPath} to={createPostPath}>
-          Create post
         </NavButton>
       </LinkWrapper>
     </Container>

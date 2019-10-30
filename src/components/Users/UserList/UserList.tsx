@@ -24,6 +24,10 @@ const UserItem = styled(Link)`
   text-decoration: none;
 `;
 
+const AddUser = styled.div`
+  color: lightgreen;
+`;
+
 const Username = styled.div`
   font-size: 1rem;
   font-weight: 700;
@@ -49,6 +53,9 @@ export const UserList: React.FC<Props> = ({ data }) => {
             </NumberOfPosts>
           </UserItem>
         ))}
+      <UserItem to="/users/create/">
+        <AddUser>Add user</AddUser>
+      </UserItem>
     </>
   );
 };

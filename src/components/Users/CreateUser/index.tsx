@@ -5,6 +5,10 @@ import styled from "styled-components";
 import { CreateUserComponent } from "../../../generated/graphql";
 import { whileStatement } from "@babel/types";
 
+interface Props {
+  history: any;
+}
+
 interface CustomAttributes {
   isValid: boolean;
 }
@@ -40,7 +44,7 @@ const TextField = styled.input`
   font-size: 1.2rem;
 `;
 
-const CreateUserContainer: React.FC = () => {
+const CreateUserContainer: React.FC<Props> = ({ history }) => {
   //   const [createUser, { error, loading, data }] = useMutation(
   //     CreateUserMutation
   //   );
@@ -53,7 +57,7 @@ const CreateUserContainer: React.FC = () => {
   return (
     <CreateUserComponent>
       {(mutate, { loading, data, error }) => {
-        console.log(loading, data, error);
+        data && history.goBack();
         return (
           <Container>
             <Form>
@@ -74,7 +78,7 @@ const CreateUserContainer: React.FC = () => {
                   mutate({ variables: { username: username } });
                 }}
               >
-                Create User
+                {loading ? "Creating..." : "Create Post"}
               </SubmitButton>
             </Form>
           </Container>

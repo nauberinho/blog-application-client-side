@@ -1,6 +1,9 @@
 import * as React from "react";
+import { useDispatch, connect } from "react-redux";
 import { useUserProfileQuery } from "../../../generated/graphql";
 import { User } from "./User";
+
+import { registerLastViewed } from "../../../store/statistics/actions";
 
 interface Props {
   match: {
@@ -17,6 +20,8 @@ const UserContainer: React.FC<Props> = ({ match }) => {
     refetch();
   }, [id]);
 
+  const dispatch = useDispatch();
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -28,6 +33,8 @@ const UserContainer: React.FC<Props> = ({ match }) => {
   if (!data) {
     return <div>Select a flight from the panel</div>;
   }
+
+  dispatch(registerLastViewed({ lastViewed: data }));
 
   return <User data={data} />;
 };

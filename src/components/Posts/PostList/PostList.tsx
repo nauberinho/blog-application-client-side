@@ -16,6 +16,11 @@ const PostItem = styled(Link)`
   text-decoration: none;
 `;
 
+const AddPost = styled.div`
+  color: lightgreen;
+  font-weight: bold;
+`;
+
 const Title = styled.div`
   font-size: 1rem;
   font-weight: 700;
@@ -30,5 +35,8 @@ export const PostList: React.FC<Props> = ({ data }) => (
           <Title>{_.get(post, "node.title", "")}</Title>
         </PostItem>
       ))}
+    <PostItem to="/posts/create/">
+      <AddPost>Add post</AddPost>
+    </PostItem>
   </>
 );

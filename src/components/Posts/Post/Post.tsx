@@ -42,7 +42,6 @@ interface Props {
 
 const Post: React.FC<Props> = ({ data }) => {
   const { post } = data;
-  console.log(data);
   if (!post) {
     return <div>No post is available</div>;
   }
